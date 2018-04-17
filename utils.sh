@@ -35,5 +35,14 @@ function SED() {
     sed "${new_params[@]}";
 }
 
+##############################################
+# String processing.
+##############################################
+function not_empty() {
+    if [ "$1" ]; then
+        return 0;
+    fi
+    return 1;
+}
 
 

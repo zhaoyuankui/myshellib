@@ -9,7 +9,7 @@ source $MYSHELLIB/echoc.sh;
 # Error processing.
 ##############################################
 function die() {
-    echoc red "${@}";
+    echoc Red "${@}";
     exit 1;
 }
 

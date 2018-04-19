@@ -45,4 +45,26 @@ function not_empty() {
     return 1;
 }
 
+##############################################
+# Date and time functions.
+##############################################
+function daytime() {
+    date '+%Y-%m-%d %H:%M:%S';
+}
+
+function daytime2() {
+    date '+%Y%m%d%H%M%S';
+}
+
+function day() {
+    date '+%Y-%m-%d';
+}
+
+function day2() {
+    date '+%Y%m%d';
+}
+
+function timestamp() {
+    date '+%s';
+}
 

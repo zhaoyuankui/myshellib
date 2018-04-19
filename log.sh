@@ -13,6 +13,10 @@ function info() {
     echo "[INFO] ${@}";
 }
 
+function notice() {
+    echoc Yellow "[WARN] ${@}";
+}
+
 function warn() {
     echoc Yellow "[WARN] ${@}";
 }

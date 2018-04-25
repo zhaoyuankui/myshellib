@@ -5,22 +5,36 @@
 source $MYSHELLIB/env.sh;
 source $MYSHELLIB/echoc.sh;
 
+declare LOG_FILE='/var/tmp/myshell.log';
+
+function log() {
+    if [ $# -eq 2 ]; then
+        echoc "$1" "$2";
+        shift;
+    else
+        echo "$1";
+    fi
+    if [ "$LOG_FILE" ]; then
+        echo "$1" >> $LOG_FILE;
+    fi
+}
+
 function debug() {
-    echo "[DEBUG] ${@}";
+    log "[DEBUG] ${@}";
 }
 
 function info() {
-    echo "[INFO] ${@}";
+    log "[INFO] ${@}";
 }
 
 function notice() {
-    echoc Yellow "[WARN] ${@}";
+    log Yellow "[WARN] ${@}";
 }
 
 function warn() {
-    echoc Yellow "[WARN] ${@}";
+    log Yellow "[WARN] ${@}";
 }
 
 function error() {
-    echoc Red "[ERROR] ${@}";
+    log Red "[ERROR] ${@}";
 }

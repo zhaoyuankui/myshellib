@@ -7,7 +7,7 @@ source $MYSHELLIB/echoc.sh;
 
 declare LOG_FILE='/var/tmp/myshell.log';
 
-function log() {
+function _myshell_log() {
     if [ $# -eq 2 ]; then
         echoc "$1" "$2";
         shift;
@@ -20,21 +20,21 @@ function log() {
 }
 
 function debug() {
-    log "[DEBUG] ${@}";
+    _myshell_log "[DEBUG] ${@}";
 }
 
 function info() {
-    log "[INFO] ${@}";
+    _myshell_log "[INFO] ${@}";
 }
 
 function notice() {
-    log Yellow "[WARN] ${@}";
+    _myshell_log Yellow "[WARN] ${@}";
 }
 
 function warn() {
-    log Yellow "[WARN] ${@}";
+    _myshell_log Yellow "[WARN] ${@}";
 }
 
 function error() {
-    log Red "[ERROR] ${@}";
+    _myshell_log Red "[ERROR] ${@}";
 }

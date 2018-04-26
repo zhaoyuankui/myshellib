@@ -11,6 +11,7 @@ function echoc() {
         shift;
     fi
     declare color=$(eval echo "\$$1");
+    color="`echo $color | grep '^\\\\033\[[0-9;]*m$'`";
     if [ "$color" ]; then
         shift;
     fi

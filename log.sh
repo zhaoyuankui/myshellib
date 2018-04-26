@@ -20,21 +20,21 @@ function _myshell_log() {
 }
 
 function debug() {
-    _myshell_log "[DEBUG] ${@}";
+    _myshell_log "[DEBUG] ${*}";
 }
 
 function info() {
-    _myshell_log "[INFO] ${@}";
+    _myshell_log "[INFO] ${*}";
 }
 
 function notice() {
-    _myshell_log Yellow "[WARN] ${@}";
+    _myshell_log Yellow "[WARN] ${*}";
 }
 
 function warn() {
-    _myshell_log Yellow "[WARN] ${@}";
+    _myshell_log Yellow "[WARN] ${*}";
 }
 
 function error() {
-    _myshell_log Red "[ERROR] ${@}";
+    _myshell_log Red "[ERROR] ${*}";
 }

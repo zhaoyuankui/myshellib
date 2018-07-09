@@ -12,6 +12,24 @@ function test_not_empty() {
     not_empty "" || echo "empty";
 }
 
+function _processor() {
+    echo "Traverse '$1'";
+}
+
+function _filter() {
+    if [ "`echo "$1" | grep svn`" ]; then
+        return 1;
+    fi
+    return 0;
+}
+
+function test_traverse() {
+    traverse . _processor;
+    traverse ./sed_test.txt _processor;
+    traverse ~/bin _processor _filter;
+    traverse ~;
+}
+
 function run() {
     for test in "${@}"; do
         test_$test;

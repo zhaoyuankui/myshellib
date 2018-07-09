@@ -68,3 +68,52 @@ function timestamp() {
     date '+%s';
 }
 
+##############################################
+# File system functions.
+##############################################
+# Traverse the directory.
+# @param $1 required  The path to be traverse.
+# @param $2 required  The processor to process the path.
+# @param $3 optional  The filter.
+function traverse() {
+    if [ $# -lt 2 ]; then
+        die 'Missing required parameters';
+    fi
+    declare -i depth=1000;
+    _do_traverse $depth "$1" "$2" "$3";
+}
+
+function _do_traverse() {
+    declare -i depth=$1;
+    declare path="$2";
+    declare processor="$3";
+    declare filter="$4";
+	if [ $depth -le 0 ]; then
+		die "The depth of path '$path' is too large. Exit gracefully!";
+		return 1;
+	fi
+	depth=$depth-1;
+    if [ ! "$filter" ] || $filter "$path"; then
+        $processor "$path";
+    fi
+
+    if [ ! -d "$path" ]; then
+        return 0;
+    fi
+
+	for file in `ls -a $path`; do
+        # Trim the blank spaces at its head and tail.
+		file="`echo $file`"
+        # Escape the "." directory to avoid forever recursive.
+		if [ "$file" == "." ] || [ "$file" == ".." ]; then
+			continue
+		fi
+
+		file="$path/$file"
+        _do_traverse $depth "$file" "$processor" "$filter";
+        if [ 0 -ne $? ]; then
+            return $?;
+        fi
+	done
+}
+

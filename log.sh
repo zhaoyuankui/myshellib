@@ -4,6 +4,7 @@
 
 source $MYSHELLIB/env.sh;
 source $MYSHELLIB/echoc.sh;
+source $MYSHELLIB/utils.sh
 
 declare LOG_FILE='/var/tmp/myshell.log';
 
@@ -15,7 +16,7 @@ function _myshell_log() {
         echo "$1";
     fi
     if [ "$LOG_FILE" ]; then
-        echo "$1" >> $LOG_FILE;
+        echo "[`daytime`] $1" >> $LOG_FILE;
     fi
 }
 

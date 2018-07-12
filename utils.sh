@@ -101,9 +101,9 @@ function _do_traverse() {
         return 0;
     fi
 
-	for file in `ls -a $path`; do
+	for file in `ls -a "$path" | tr ' ' '?'`; do
         # Trim the blank spaces at its head and tail.
-		file="`echo $file`"
+		file="`echo $file | tr '?' ' '`"
         # Escape the "." directory to avoid forever recursive.
 		if [ "$file" == "." ] || [ "$file" == ".." ]; then
 			continue
